@@ -15,7 +15,7 @@ abstract class PlayerDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: PlayerDatabase? = null
 
-        fun getInstance(context: Context): PlayerDatabase {
+        fun getDatabase(context: Context): PlayerDatabase {
             synchronized(this) {
                 var instance = INSTANCE
 
