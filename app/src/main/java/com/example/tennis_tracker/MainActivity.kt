@@ -12,4 +12,6 @@ class MainActivity : AppCompatActivity() {
     override fun onResume(){
         super.onResume()
     }
+
+    //trying out useless comments
 }
