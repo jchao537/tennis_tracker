@@ -18,5 +18,9 @@
         android:id="@+id/addNewPlayerFragment"
         android:name="com.example.tennis_tracker.addnewplayer.AddNewPlayerFragment"
         android:label="fragment_add_new_player"
-        tools:layout="@layout/fragment_add_new_player" />
+        tools:layout="@layout/fragment_add_new_player" >
+        <action
+            android:id="@+id/action_addNewPlayerFragment_to_playerManagerFragment"
+            app:destination="@id/playerManagerFragment" />
+    </fragment>
 </navigation>

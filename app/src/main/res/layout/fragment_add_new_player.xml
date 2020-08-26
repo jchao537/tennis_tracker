@@ -1,49 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <EditText
-        android:id="@+id/edit_name"
+    <data>
+
+        <variable
+            name="addNewPlayerViewModel"
+            type="com.example.tennis_tracker.addnewplayer.AddNewPlayerViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:fontFamily="sans-serif-light"
-        android:hint="Word..."
-        android:inputType="textAutoComplete"
-        android:layout_margin="16dp"
-        android:textSize="18sp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edit_year"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:fontFamily="sans-serif-light"
-        android:hint="Year..."
-        android:inputType="textAutoComplete"
-        android:layout_margin="16dp"
-        android:textSize="18sp" />
+        <EditText
+            android:id="@+id/edit_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:fontFamily="sans-serif-light"
+            android:hint="Word..."
+            android:inputType="textAutoComplete"
+            android:minHeight="48dp"
+            android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/edit_rank"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:fontFamily="sans-serif-light"
-        android:hint="Rank..."
-        android:inputType="textAutoComplete"
-        android:layout_margin="16dp"
-        android:textSize="18sp" />
+        <EditText
+            android:id="@+id/edit_year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:fontFamily="sans-serif-light"
+            android:hint="Year..."
+            android:inputType="textAutoComplete"
+            android:minHeight="48dp"
+            android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/button_save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:text="Save"
-        android:layout_margin="16dp"
-        android:textColor="#FFFFFF" />
+        <EditText
+            android:id="@+id/edit_rank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:fontFamily="sans-serif-light"
+            android:hint="Rank..."
+            android:inputType="textAutoComplete"
+            android:minHeight="48dp"
+            android:textSize="18sp" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@color/colorPrimary"
+            android:text="Save"
+            android:textColor="#FFFFFF"
+            android:onClick="@{() -> addNewPlayerViewModel.onSaveClicked()}"/>
+
+    </LinearLayout>
+</layout>
