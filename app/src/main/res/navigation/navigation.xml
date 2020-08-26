@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/playerManagerFragment"
-        android:name="com.example.tennis_tracker.PlayerManagerFragment"
+        android:name="com.example.tennis_tracker.playermanager.PlayerManagerFragment"
         android:label="fragment_player_manager"
         tools:layout="@layout/fragment_player_manager" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/addNewPlayerFragment"
-        android:name="com.example.tennis_tracker.AddNewPlayerFragment"
+        android:name="com.example.tennis_tracker.addnewplayer.AddNewPlayerFragment"
         android:label="fragment_add_new_player"
         tools:layout="@layout/fragment_add_new_player" />
 </navigation>

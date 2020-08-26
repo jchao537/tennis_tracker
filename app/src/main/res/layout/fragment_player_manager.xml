@@ -6,7 +6,7 @@
     <data>
         <variable
             name="playerManagerViewModel"
-            type="com.example.tennis_tracker.PlayerManagerViewModel"/>
+            type="com.example.tennis_tracker.playermanager.PlayerManagerViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

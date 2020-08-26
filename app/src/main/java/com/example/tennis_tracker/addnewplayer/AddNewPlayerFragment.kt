@@ -1,14 +1,13 @@
-package com.example.tennis_tracker
+package com.example.tennis_tracker.addnewplayer
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.example.tennis_tracker.R
 
-class PlayerManagerFragment : Fragment() {
+class AddNewPlayerFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -17,6 +16,7 @@ class PlayerManagerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_player_manager, container, false)
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_add_new_player, container, false)
     }
 }
