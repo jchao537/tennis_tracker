@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tennis_tracker.R
 import com.example.tennis_tracker.database.PlayerDatabase
 import com.example.tennis_tracker.databinding.FragmentPlayerManagerBinding
+import timber.log.Timber
 
 class PlayerManagerFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +42,7 @@ class PlayerManagerFragment : Fragment() {
                     val navController = findNavController()
                     navController.navigate(R.id.action_playerManagerFragment_to_addNewPlayerFragment)
                     playerManagerViewModel.onNavigatedToAdd()
+                    Timber.i("Moved to Add")
                 }
             })
 

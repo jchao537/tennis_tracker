@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "player_table")
 data class Player (
-    @PrimaryKey(autoGenerate = true) var playerId: Long,
+    @PrimaryKey(autoGenerate = true) var playerId: Long = 0,
     @ColumnInfo var playerName: String?,
     @ColumnInfo var playerYear: Int?,
     @ColumnInfo var playerRank: Int?

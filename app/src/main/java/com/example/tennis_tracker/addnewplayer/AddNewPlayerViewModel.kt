@@ -5,11 +5,11 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.tennis_tracker.database.Player
 import com.example.tennis_tracker.database.PlayerDatabaseDao
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
+import timber.log.Timber
 
 class AddNewPlayerViewModel(val database: PlayerDatabaseDao, application: Application) : AndroidViewModel(application) {
     private var viewModelJob = Job()
@@ -26,6 +26,19 @@ class AddNewPlayerViewModel(val database: PlayerDatabaseDao, application: Applic
 
     fun onNavigatedToManager() {
         _navigateToManager.value = false
+    }
+
+    fun saveNewPlayer(player: Player) {
+        viewModelScope.launch{
+            insert(player)
+            Timber.i("New Player Added 1")
+        }
+    }
+
+    private suspend fun insert(player: Player) {
+        withContext(Dispatchers.IO) {
+            database.insert(player)
+        }
     }
 
     override fun onCleared() {

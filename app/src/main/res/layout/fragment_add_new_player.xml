@@ -31,7 +31,7 @@
             android:layout_margin="16dp"
             android:fontFamily="sans-serif-light"
             android:hint="Year..."
-            android:inputType="textAutoComplete"
+            android:inputType="number"
             android:minHeight="48dp"
             android:textSize="18sp" />
 
@@ -42,7 +42,7 @@
             android:layout_margin="16dp"
             android:fontFamily="sans-serif-light"
             android:hint="Rank..."
-            android:inputType="textAutoComplete"
+            android:inputType="number"
             android:minHeight="48dp"
             android:textSize="18sp" />
 

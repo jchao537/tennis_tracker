@@ -1,14 +1,12 @@
 package com.example.tennis_tracker.playermanager
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.tennis_tracker.database.Player
 import com.example.tennis_tracker.database.PlayerDatabase
 import com.example.tennis_tracker.database.PlayerDatabaseDao
 import com.example.tennis_tracker.database.PlayerRepository
+import com.example.tennis_tracker.formatPlayers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -17,7 +15,11 @@ import kotlinx.coroutines.launch
 class PlayerManagerViewModel(val database: PlayerDatabaseDao, application: Application) : AndroidViewModel(application) {
 
     private val repository: PlayerRepository
-    val allPlayers: LiveData<List<Player>>
+    private val allPlayers: LiveData<List<Player>>
+    private val players = database.getAllPlayers()
+    val playersString = Transformations.map(players) { players ->
+        formatPlayers(players, application.resources)
+    }
 
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -51,5 +53,4 @@ class PlayerManagerViewModel(val database: PlayerDatabaseDao, application: Appli
         super.onCleared()
         viewModelJob.cancel()
     }
-
 }

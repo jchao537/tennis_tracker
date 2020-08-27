@@ -15,7 +15,7 @@ interface PlayerDatabaseDao {
     fun get(key: Long): Player?
 
     @Query("DELETE FROM player_table")
-    fun clear()
+    fun clearAllPlayers()
 
     @Query("SELECT * FROM player_table ORDER BY playerId DESC LIMIT 1")
     fun getLastPlayer(): Player?
