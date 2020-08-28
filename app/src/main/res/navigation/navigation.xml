@@ -21,6 +21,8 @@
         tools:layout="@layout/fragment_add_new_player" >
         <action
             android:id="@+id/action_addNewPlayerFragment_to_playerManagerFragment"
-            app:destination="@id/playerManagerFragment" />
+            app:destination="@id/playerManagerFragment"
+            app:popUpTo="@id/playerManagerFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

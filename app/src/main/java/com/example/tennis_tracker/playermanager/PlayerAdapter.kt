@@ -1,50 +1,35 @@
 package com.example.tennis_tracker.playermanager
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tennis_tracker.R
 import com.example.tennis_tracker.database.Player
+import com.example.tennis_tracker.databinding.RecyclerviewItemBinding
 
-class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.ViewHolder>() {
-    class ViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val playerName: TextView = itemView.findViewById(R.id.name_val)
-        val playerYear: TextView = itemView.findViewById(R.id.year_val)
-        val playerRank: TextView = itemView.findViewById(R.id.rank_val)
+class PlayerAdapter : ListAdapter<Player, PlayerAdapter.ViewHolder>(PlayerDiffCallback()) {
+    class ViewHolder private constructor(val binding: RecyclerviewItemBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun bind(item: Player) {
-            playerName.text = item.playerId.toString() + item.playerName
-            playerYear.text = item.playerYear.toString()
-            playerRank.text = item.playerRank.toString()
+            binding.nameVal.text = item.playerId.toString() + item.playerName
+            binding.yearVal.text = item.playerYear.toString()
+            binding.rankVal.text = item.playerRank.toString()
         }
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater =
                     LayoutInflater.from(parent.context)
-                val view = layoutInflater
-                    .inflate(
-                        R.layout.recyclerview_item,
-                        parent, false
-                    )
-                return ViewHolder(view)
+                val binding = RecyclerviewItemBinding.inflate(layoutInflater, parent, false)
+                return ViewHolder(binding)
             }
         }
 
     }
 
-    var data =  listOf<Player>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-
-    override fun getItemCount() = data.size
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = data[position]
+        val item = getItem(position)
         holder.bind(item)
     }
 
@@ -52,3 +37,14 @@ class PlayerAdapter: RecyclerView.Adapter<PlayerAdapter.ViewHolder>() {
         return ViewHolder.from(parent)
     }
 }
+
+class PlayerDiffCallback : DiffUtil.ItemCallback<Player>() {
+    override fun areItemsTheSame(oldItem: Player, newItem: Player): Boolean {
+        return oldItem.playerId == newItem.playerId
+    }
+
+    override fun areContentsTheSame(oldItem: Player, newItem: Player): Boolean {
+        return oldItem == newItem
+    }
+}
+
