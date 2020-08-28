@@ -1,6 +1,7 @@
 package com.example.tennis_tracker.addnewplayer
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -9,8 +10,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -21,6 +24,7 @@ import com.example.tennis_tracker.database.Player
 import com.example.tennis_tracker.database.PlayerDatabase
 import com.example.tennis_tracker.databinding.FragmentAddNewPlayerBinding
 import com.example.tennis_tracker.databinding.FragmentPlayerManagerBinding
+import com.example.tennis_tracker.hideSoftKeyboard
 import com.example.tennis_tracker.playermanager.PlayerManagerViewModel
 import com.example.tennis_tracker.playermanager.PlayerManagerViewModelFactory
 import kotlinx.android.synthetic.main.fragment_add_new_player.*
@@ -73,6 +77,7 @@ class AddNewPlayerFragment : Fragment() {
                         Timber.i("New Player Added 2")
                         findNavController().navigate(R.id.action_addNewPlayerFragment_to_playerManagerFragment)
                         addNewPlayerViewModel.onNavigatedToManager()
+                        hideSoftKeyboard(requireActivity())
                     }
 //                    val navController = findNavController()
 //                    navController.navigate(R.id.action_addNewPlayerFragment_to_playerManagerFragment)
