@@ -52,7 +52,7 @@ class SimpleEntityReadWriteTest {
         playerDao.insert(player2)
         lastPlayer = playerDao.getLastPlayer()
         assertEquals(lastPlayer?.playerName, "Djokovic")
-        playerDao.clear()
+        playerDao.clearAllPlayers()
         lastPlayer = playerDao.getLastPlayer()
         assertEquals(lastPlayer?.playerId, null)
         assertEquals(lastPlayer?.playerName, null)

@@ -7,19 +7,14 @@ import com.example.tennis_tracker.database.PlayerDatabase
 import com.example.tennis_tracker.database.PlayerDatabaseDao
 import com.example.tennis_tracker.database.PlayerRepository
 import com.example.tennis_tracker.formatPlayers
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import timber.log.Timber
 
 class PlayerManagerViewModel(val database: PlayerDatabaseDao, application: Application) : AndroidViewModel(application) {
 
     private val repository: PlayerRepository
     private val allPlayers: LiveData<List<Player>>
-    private val players = database.getAllPlayers()
-    val playersString = Transformations.map(players) { players ->
-        formatPlayers(players, application.resources)
-    }
+    val players = database.getAllPlayers()
 
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -34,6 +29,15 @@ class PlayerManagerViewModel(val database: PlayerDatabaseDao, application: Appli
 
     fun onNavigatedToAdd() {
         _navigateToAdd.value = false
+    }
+
+    fun onClear() {
+        Timber.i("Ready to clear")
+        uiScope.launch {
+            // Clear the database table.
+            clear()
+        }
+        Timber.i("Cleared")
     }
 
     init {
@@ -52,5 +56,11 @@ class PlayerManagerViewModel(val database: PlayerDatabaseDao, application: Appli
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+    }
+
+    private suspend fun clear() {
+        withContext(Dispatchers.IO) {
+            database.clearAllPlayers()
+        }
     }
 }

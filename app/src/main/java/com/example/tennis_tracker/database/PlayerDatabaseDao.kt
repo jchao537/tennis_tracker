@@ -22,4 +22,7 @@ interface PlayerDatabaseDao {
 
     @Query("SELECT * FROM player_table ORDER BY playerId DESC")
     fun getAllPlayers(): LiveData<List<Player>>
+
+    @Query("SELECT COUNT(playerId) FROM player_table")
+    fun getDataCount(): Int
 }
